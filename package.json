@@ -1,0 +1,23 @@
+{
+  "devDependencies": {
+    "vitest": "^0.22.1"
+  },
+  "name": "the-tutorial-super-tiny-compiler",
+  "description": "the tutorial super tiny compiler",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cuixiaorui/the-tutorial-super-tiny-compiler.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cuixiaorui/the-tutorial-super-tiny-compiler/issues"
+  },
+  "homepage": "https://github.com/cuixiaorui/the-tutorial-super-tiny-compiler#readme"
+}
