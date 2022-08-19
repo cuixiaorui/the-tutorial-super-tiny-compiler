@@ -1,17 +1,17 @@
 import { test, expect } from "vitest";
-import { tokenizer, TokenType } from "./tokenizer";
+import { tokenizer, TokenTypes } from "./tokenizer";
 
 test("tokenizer", () => {
   const tokens = [
-    { type: TokenType.paren, value: "(" },
-    { type: TokenType.name, value: "add" },
-    { type: TokenType.number, value: "2" },
-    { type: TokenType.paren, value: "(" },
-    { type: TokenType.name, value: "subtract" },
-    { type: TokenType.number, value: "4" },
-    { type: TokenType.number, value: "2" },
-    { type: TokenType.paren, value: ")" },
-    { type: TokenType.paren, value: ")" },
+    { type: TokenTypes.paren, value: "(" },
+    { type: TokenTypes.name, value: "add" },
+    { type: TokenTypes.number, value: "2" },
+    { type: TokenTypes.paren, value: "(" },
+    { type: TokenTypes.name, value: "subtract" },
+    { type: TokenTypes.number, value: "4" },
+    { type: TokenTypes.number, value: "2" },
+    { type: TokenTypes.paren, value: ")" },
+    { type: TokenTypes.paren, value: ")" },
   ];
 
   const code = "(add 2 (subtract 4 2))";
@@ -21,7 +21,7 @@ test("tokenizer", () => {
 test("paren", () => {
   const tokens = [
     {
-      type: TokenType.paren,
+      type: TokenTypes.paren,
       value: "(",
     },
   ];
@@ -32,7 +32,7 @@ test("paren", () => {
 test("name", () => {
   const tokens = [
     {
-      type: TokenType.name,
+      type: TokenTypes.name,
       value: "add",
     },
   ];
@@ -43,7 +43,7 @@ test("name", () => {
 test("number", () => {
   const tokens = [
     {
-      type: TokenType.number,
+      type: TokenTypes.number,
       value: "22",
     },
   ];
@@ -54,23 +54,23 @@ test("number", () => {
 test("paren + name + number", () => {
   const tokens = [
     {
-      type: TokenType.paren,
+      type: TokenTypes.paren,
       value: "(",
     },
     {
-      type: TokenType.name,
+      type: TokenTypes.name,
       value: "add",
     },
     {
-      type: TokenType.number,
+      type: TokenTypes.number,
       value: "2",
     },
     {
-      type: TokenType.number,
+      type: TokenTypes.number,
       value: "2",
     },
     {
-      type: TokenType.paren,
+      type: TokenTypes.paren,
       value: ")",
     },
   ];
@@ -81,23 +81,23 @@ test("paren + name + number", () => {
 test("string", () => {
   const tokens = [
     {
-      type: TokenType.paren,
+      type: TokenTypes.paren,
       value: "(",
     },
     {
-      type: TokenType.name,
+      type: TokenTypes.name,
       value: "add",
     },
     {
-      type: TokenType.string,
+      type: TokenTypes.string,
       value: "hello",
     },
     {
-      type: TokenType.string,
+      type: TokenTypes.string,
       value: "world",
     },
     {
-      type: TokenType.paren,
+      type: TokenTypes.paren,
       value: ")",
     },
   ];

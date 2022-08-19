@@ -1,9 +1,9 @@
-interface Token {
-  type: TokenType;
+export interface Token {
+  type: TokenTypes;
   value: string;
 }
 
-export enum TokenType {
+export enum TokenTypes {
   paren,
   name,
   number,
@@ -25,7 +25,7 @@ export function tokenizer(code: string) {
 
     if (char === "(") {
       tokens.push({
-        type: TokenType.paren,
+        type: TokenTypes.paren,
         value: char,
       });
       current++;
@@ -34,7 +34,7 @@ export function tokenizer(code: string) {
 
     if (char === ")") {
       tokens.push({
-        type: TokenType.paren,
+        type: TokenTypes.paren,
         value: char,
       });
       current++;
@@ -52,7 +52,7 @@ export function tokenizer(code: string) {
       }
 
       tokens.push({
-        type: TokenType.name,
+        type: TokenTypes.name,
         value,
       });
     }
@@ -67,7 +67,7 @@ export function tokenizer(code: string) {
       }
 
       tokens.push({
-        type: TokenType.number,
+        type: TokenTypes.number,
         value: value,
       });
     }
@@ -82,7 +82,7 @@ export function tokenizer(code: string) {
       }
 
       tokens.push({
-        type: TokenType.string,
+        type: TokenTypes.string,
         value: value,
       });
 
