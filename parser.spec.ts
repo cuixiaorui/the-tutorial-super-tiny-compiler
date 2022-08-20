@@ -6,15 +6,15 @@ import { TokenTypes } from "./tokenizer";
 describe("parser", () => {
   it("parser tokens to ast", () => {
     const tokens = [
-      { type: TokenTypes.paren, value: "(" },
-      { type: TokenTypes.name, value: "add" },
-      { type: TokenTypes.number, value: "2" },
-      { type: TokenTypes.paren, value: "(" },
-      { type: TokenTypes.name, value: "subtract" },
-      { type: TokenTypes.number, value: "4" },
-      { type: TokenTypes.number, value: "2" },
-      { type: TokenTypes.paren, value: ")" },
-      { type: TokenTypes.paren, value: ")" },
+      { type: TokenTypes.Paren, value: "(" },
+      { type: TokenTypes.Name, value: "add" },
+      { type: TokenTypes.Number, value: "2" },
+      { type: TokenTypes.Paren, value: "(" },
+      { type: TokenTypes.Name, value: "subtract" },
+      { type: TokenTypes.Number, value: "4" },
+      { type: TokenTypes.Number, value: "2" },
+      { type: TokenTypes.Paren, value: ")" },
+      { type: TokenTypes.Paren, value: ")" },
     ];
     const ast = {
       type: NodeTypes.Program,
@@ -49,7 +49,7 @@ describe("parser", () => {
   });
 
   it("number", () => {
-    const tokens = [{ type: TokenTypes.number, value: "2" }];
+    const tokens = [{ type: TokenTypes.Number, value: "2" }];
 
     const ast = {
       type: NodeTypes.Program,
@@ -64,7 +64,7 @@ describe("parser", () => {
   });
 
   it("name", () => {
-    const tokens = [{ type: TokenTypes.string, value: "hello" }];
+    const tokens = [{ type: TokenTypes.String, value: "hello" }];
 
     const ast = {
       type: NodeTypes.Program,
@@ -80,11 +80,11 @@ describe("parser", () => {
 
   it("call expression (add 1 1)", () => {
     const tokens = [
-      { type: TokenTypes.paren, value: "(" },
-      { type: TokenTypes.name, value: "add" },
-      { type: TokenTypes.number, value: "1" },
-      { type: TokenTypes.number, value: "1" },
-      { type: TokenTypes.paren, value: ")" },
+      { type: TokenTypes.Paren, value: "(" },
+      { type: TokenTypes.Name, value: "add" },
+      { type: TokenTypes.Number, value: "1" },
+      { type: TokenTypes.Number, value: "1" },
+      { type: TokenTypes.Paren, value: ")" },
     ];
     const ast = {
       type: NodeTypes.Program,

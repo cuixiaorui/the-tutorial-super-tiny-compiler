@@ -14,19 +14,19 @@ export function parser(tokens: Token[]) {
   function walk() {
     let token = tokens[current];
 
-    if (token.type === TokenTypes.number) {
+    if (token.type === TokenTypes.Number) {
       current++;
 
       return createNumberLiteralNode(token.value);
     }
 
-    if (token.type === TokenTypes.string) {
+    if (token.type === TokenTypes.String) {
       current++;
 
       return createStringLiteralNode(token.value);
     }
 
-    if (token.type === TokenTypes.paren && token.value === "(") {
+    if (token.type === TokenTypes.Paren && token.value === "(") {
       token = tokens[++current];
 
       let node = createCallExpression(token.value);
@@ -37,7 +37,7 @@ export function parser(tokens: Token[]) {
       while (
         // token.type !== TokenType.paren ||
         // (token.type === TokenType.paren && token.value !== ")")
-        !(token.type === TokenTypes.paren && token.value === ")")
+        !(token.type === TokenTypes.Paren && token.value === ")")
       ) {
         node.params.push(walk());
         token = tokens[current];
