@@ -5,25 +5,31 @@ export enum NodeTypes {
   CallExpression,
 }
 
+export type ChildNode = NumberLiteralNode | CallExpressionNode | StringLiteralNode;
+
 export interface Node {
   type: NodeTypes;
 }
 
 export interface NumberLiteralNode extends Node {
+  type: NodeTypes.NumberLiteral;
   value: string;
 }
 
 export interface StringLiteralNode extends Node {
   value: string;
+  type: NodeTypes.StringLiteral;
 }
 
 export interface CallExpressionNode extends Node {
   name: string;
-  params: Node[];
+  params: ChildNode[];
+  type: NodeTypes.CallExpression;
 }
 
 export interface RootNode extends Node {
-  body: Node[];
+  body: ChildNode[];
+  type: NodeTypes.Program
 }
 
 export function createStringLiteralNode(value): StringLiteralNode {

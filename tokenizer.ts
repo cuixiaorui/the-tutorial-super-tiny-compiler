@@ -1,18 +1,18 @@
+export enum TokenTypes {
+  Paren,
+  Name,
+  Number,
+  String
+}
+
 export interface Token {
   type: TokenTypes;
   value: string;
 }
 
-export enum TokenTypes {
-  paren,
-  name,
-  number,
-  string,
-}
-
 export function tokenizer(code: string) {
-  let current = 0;
   const tokens: Token[] = [];
+  let current = 0;
 
   while (current < code.length) {
     let char = code[current];
@@ -25,7 +25,7 @@ export function tokenizer(code: string) {
 
     if (char === "(") {
       tokens.push({
-        type: TokenTypes.paren,
+        type: TokenTypes.Paren,
         value: char,
       });
       current++;
@@ -34,15 +34,13 @@ export function tokenizer(code: string) {
 
     if (char === ")") {
       tokens.push({
-        type: TokenTypes.paren,
+        type: TokenTypes.Paren,
         value: char,
       });
       current++;
       continue;
     }
 
-    // add
-    // name -> [a-z]
     const LETTERS = /[a-z]/i;
     if (LETTERS.test(char)) {
       let value = "";
@@ -52,13 +50,13 @@ export function tokenizer(code: string) {
       }
 
       tokens.push({
-        type: TokenTypes.name,
+        type: TokenTypes.Name,
         value,
       });
     }
 
-    // number
     const NUMBERS = /[0-9]/;
+
     if (NUMBERS.test(char)) {
       let value = "";
       while (NUMBERS.test(char) && current < code.length) {
@@ -67,27 +65,9 @@ export function tokenizer(code: string) {
       }
 
       tokens.push({
-        type: TokenTypes.number,
-        value: value,
+        type: TokenTypes.Number,
+        value,
       });
-    }
-
-    // string
-    if (char === '"') {
-      let value = "";
-      char = code[++current];
-      while (char !== '"' && current < code.length) {
-        value += char;
-        char = code[++current];
-      }
-
-      tokens.push({
-        type: TokenTypes.string,
-        value: value,
-      });
-
-      current++;
-      continue;
     }
   }
 
