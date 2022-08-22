@@ -1,8 +1,8 @@
 export enum NodeTypes {
-  NumberLiteral,
-  Program,
-  StringLiteral,
-  CallExpression,
+  NumberLiteral = "NumberLiteral",
+  Program = "Program",
+  StringLiteral = "StringLiteral",
+  CallExpression = "CallExpression",
 }
 
 export type ChildNode = NumberLiteralNode | CallExpressionNode | StringLiteralNode;

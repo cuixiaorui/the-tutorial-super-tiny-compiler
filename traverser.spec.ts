@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 import { NodeTypes, RootNode } from "./ast";
-import { traverse, TraversOptions } from "./traverser";
+import { traverse, Visitor } from "./traverser";
 // 遍历树
 test("traverser", () => {
   const ast: RootNode = {
@@ -34,7 +34,7 @@ test("traverser", () => {
   };
 
   const callCounts: Array<string | NodeTypes >[] = [];
-  const options: TraversOptions = {
+  const visitor: Visitor = {
     Program: {
       enter(node, parent) {
         callCounts.push(["program-enter", node.type, ""]);
@@ -63,7 +63,7 @@ test("traverser", () => {
     },
   };
 
-  traverse(ast, options);
+  traverse(ast, visitor);
 
   expect(callCounts).toEqual([
     ["program-enter", NodeTypes.Program, ""],

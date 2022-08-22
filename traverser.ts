@@ -1,25 +1,19 @@
 import { ChildNode, NodeTypes, RootNode } from "./ast";
 
-const nodeTypeToCallMethod = {
-  [NodeTypes.CallExpression]: "CallExpression",
-  [NodeTypes.NumberLiteral]: "NumberLiteral",
-  [NodeTypes.Program]: "Program",
-  [NodeTypes.StringLiteral]: "StringLiteral",
-} as const;
-
 type ParentNode = RootNode | ChildNode | undefined;
 type MethodFn = (node: RootNode | ChildNode, parent: ParentNode) => void;
-interface MethodOptions {
+interface VisitorOption {
   enter: MethodFn;
   exit: MethodFn;
 }
-export interface TraversOptions {
-  Program?: MethodOptions;
-  NumberLiteral?: MethodOptions;
-  CallExpression?: MethodOptions;
+export interface Visitor {
+  Program?: VisitorOption;
+  NumberLiteral?: VisitorOption;
+  CallExpression?: VisitorOption;
+  StringLiteral?: VisitorOption
 }
 
-export function traverse(rootNode: RootNode, options: TraversOptions) {
+export function traverse(rootNode: RootNode, visitor: Visitor) {
   // 遍历树 深度优先搜索
   function traverArray(array: ChildNode[], parent: ParentNode) {
     array.forEach((node) => {
@@ -29,7 +23,7 @@ export function traverse(rootNode: RootNode, options: TraversOptions) {
 
   function traverNode(node: RootNode | ChildNode, parent?: ParentNode) {
     // enter
-    const methods = options[nodeTypeToCallMethod[node.type]];
+    const methods = visitor[node.type];
     if (methods) {
       methods.enter(node, parent);
     }
