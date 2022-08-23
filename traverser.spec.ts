@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 import { NodeTypes, RootNode } from "./ast";
-import { traverse, Visitor } from "./traverser";
+import { traverser, Visitor } from "./traverser";
 // 遍历树
 test("traverser", () => {
   const ast: RootNode = {
@@ -63,7 +63,7 @@ test("traverser", () => {
     },
   };
 
-  traverse(ast, visitor);
+  traverser(ast, visitor);
 
   expect(callCounts).toEqual([
     ["program-enter", NodeTypes.Program, ""],

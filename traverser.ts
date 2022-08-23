@@ -13,7 +13,7 @@ export interface Visitor {
   StringLiteral?: VisitorOption
 }
 
-export function traverse(rootNode: RootNode, visitor: Visitor) {
+export function traverser(rootNode: RootNode, visitor: Visitor) {
   // 遍历树 深度优先搜索
   function traverArray(array: ChildNode[], parent: ParentNode) {
     array.forEach((node) => {
