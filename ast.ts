@@ -5,7 +5,10 @@ export enum NodeTypes {
   CallExpression = "CallExpression",
 }
 
-export type ChildNode = NumberLiteralNode | CallExpressionNode | StringLiteralNode;
+export type ChildNode =
+  | NumberLiteralNode
+  | CallExpressionNode
+  | StringLiteralNode;
 
 export interface Node {
   type: NodeTypes;
@@ -25,11 +28,13 @@ export interface CallExpressionNode extends Node {
   name: string;
   params: ChildNode[];
   type: NodeTypes.CallExpression;
+  context?: ChildNode[];
 }
 
 export interface RootNode extends Node {
   body: ChildNode[];
-  type: NodeTypes.Program
+  type: NodeTypes.Program;
+  context?: ChildNode[];
 }
 
 export function createStringLiteralNode(value): StringLiteralNode {
@@ -46,7 +51,7 @@ export function createRootNode(): RootNode {
   };
 }
 
-export function createNumberLiteralNode(value): NumberLiteralNode {
+export function createNumberLiteralNode(value: string): NumberLiteralNode {
   return {
     type: NodeTypes.NumberLiteral,
     value,
@@ -58,5 +63,6 @@ export function createCallExpression(name): CallExpressionNode {
     type: NodeTypes.CallExpression,
     name,
     params: [],
+    context:[]
   };
 }
