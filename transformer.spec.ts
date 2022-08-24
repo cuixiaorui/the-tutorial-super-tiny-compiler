@@ -1,6 +1,6 @@
 import { RootNode, NodeTypes } from "./ast";
 import { test, expect } from "vitest";
-import {transformer} from './transformer'
+import { transformer } from "./transformer";
 test("transformer", () => {
   const originalAST: RootNode = {
     type: NodeTypes.Program,
@@ -66,38 +66,6 @@ test("transformer", () => {
               ],
             },
           ],
-        },
-      },
-    ],
-  };
-
-  expect(transformer(originalAST)).toEqual(transformedAST);
-});
-
-test("callExpresstion add();", () => {
-  const originalAST:RootNode = {
-    type: NodeTypes.Program,
-    body: [
-      {
-        type: NodeTypes.CallExpression,
-        name: "add",
-        params: [],
-      },
-    ],
-  };
-
-  const transformedAST = {
-    type: "Program",
-    body: [
-      {
-        type: "ExpressionStatement",
-        expression: {
-          type: "CallExpression",
-          callee: {
-            type: "Identifier",
-            name: "add",
-          },
-          arguments: [],
         },
       },
     ],

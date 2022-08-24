@@ -1,12 +1,12 @@
-import { NodeTypes, RootNode, createNumberLiteralNode } from "./ast";
+import { NodeTypes, RootNode } from "./ast";
 import { traverser } from "./traverser";
 export function transformer(ast: RootNode) {
-  const newAST = {
-    type: "Program",
+  const newAst = {
+    type: NodeTypes.Program,
     body: [],
   };
 
-  ast.context = newAST.body;
+  ast.context = newAst.body;
 
   traverser(ast, {
     CallExpression: {
@@ -33,20 +33,21 @@ export function transformer(ast: RootNode) {
           parent?.context?.push(expression);
         }
       },
-      exit() {},
     },
+
     NumberLiteral: {
       enter(node, parent) {
         if (node.type === NodeTypes.NumberLiteral) {
+          const numberNode: any = {
+            type: "NumberLiteral",
+            value: node.value,
+          };
 
-          if (parent && parent.type === NodeTypes.CallExpression) {
-            parent.context?.push(createNumberLiteralNode(node.value));
-          }
+          parent?.context?.push(numberNode);
         }
       },
-      exit(node, parent) {},
     },
   });
 
-  return newAST;
+  return newAst;
 }
