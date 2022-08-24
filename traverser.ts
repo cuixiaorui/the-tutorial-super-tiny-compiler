@@ -1,6 +1,6 @@
-import { ChildNode, NodeTypes, RootNode } from "./ast";
+import { ChildNode, NodeTypes, RootNode, CallExpressionNode } from "./ast";
 
-type ParentNode = RootNode | ChildNode | undefined;
+type ParentNode = RootNode | CallExpressionNode | undefined;
 type MethodFn = (node: RootNode | ChildNode, parent: ParentNode) => void;
 interface VisitorOption {
   enter: MethodFn;
