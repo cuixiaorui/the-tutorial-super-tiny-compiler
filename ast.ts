@@ -63,6 +63,5 @@ export function createCallExpression(name): CallExpressionNode {
     type: NodeTypes.CallExpression,
     name,
     params: [],
-    context:[]
   };
 }
